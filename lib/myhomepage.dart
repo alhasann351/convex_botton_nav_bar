@@ -1,4 +1,9 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:convex_botton_nav_bar/pages/chat.dart';
+import 'package:convex_botton_nav_bar/pages/dashboard.dart';
+import 'package:convex_botton_nav_bar/pages/favorite.dart';
+import 'package:convex_botton_nav_bar/pages/profile.dart';
+import 'package:convex_botton_nav_bar/pages/setting.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -10,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentTab = 2;
-
+  final pages = [const Chat(), const Profile(), const Dashboard(), const Favorite(), const Setting()];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
           TabItem(icon: Icons.favorite_outline, title: 'Favorite',),
           TabItem(icon: Icons.settings_outlined, title: 'Setting',),
         ],
+        onTap: (index){
+          setState(() {
+            currentTab = index;
+          });
+        },
       ),
+      body: pages[currentTab],
     );
   }
 }
